@@ -13,6 +13,7 @@ echo 'Data installer is working <br />';
 
 Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
 
+//Block content
 $content = '{{widget type="topproducts/widget" widget_name="Top products" products_count="3" template="topproducts/widget.phtml"}}';
 
 

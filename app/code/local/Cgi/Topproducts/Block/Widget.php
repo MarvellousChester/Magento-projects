@@ -14,6 +14,9 @@ class Cgi_Topproducts_Block_Widget
         parent::_construct();
     }
 
+    /** Return top products collection based on widget settings and product tag 'is_top'
+     * @return mixed
+     */
     protected function getTopProductsList()
     {
         $collection = Mage::getModel('catalog/product')

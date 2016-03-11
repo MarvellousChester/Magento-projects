@@ -16,7 +16,7 @@ echo 'Sql installer is working <br />';
 // Set data:
 $attributeName  = 'Is Top'; // Name of the attribute
 $attributeCode  = 'is_top'; // Code of the attribute
-$attributeGroup = 'Education';          // Group to add the attribute to
+$attributeGroup = 'Education'; // Group to add the attribute to
 
 //Add a new attribute group
 $entityTypeId = $installer->getEntityTypeId('catalog_product');
@@ -26,9 +26,9 @@ $installer->addAttributeGroup($entityTypeId, $attributeSetId, $attributeGroup, 1
 //Add a new attribute
 //Form an attribute data
 $attributeData = array(
-    'input'                     => 'select', // Input type
-    'type'                      => 'int', // Attribute type
-    'source'                    => 'eav/entity_attribute_source_boolean',
+    'input' => 'select', // Input type
+    'type'  => 'int', // Attribute type
+    'source' => 'eav/entity_attribute_source_boolean',
     'option' =>
         array (
             'values' =>
@@ -38,7 +38,7 @@ $attributeData = array(
                 ),
         ),
     'global'    => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL,    // Attribute scope
-    'required'  => false,           // Is this attribute required?
+    'required'  => false, // Is this attribute required?
     'user_defined' => false,
     'searchable' => false,
     'filterable' => false,
