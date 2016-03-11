@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<widgets>
+    <topproducts_widget type="topproducts/widget" module="topproducts">
+        <name>Top Products</name>
+        <description type="desc">Lists the Top Products</description>
+        <parameters>
+            <widget_name>
+                <required>1</required>
+                <visible>1</visible>
+                <label>Widget Name</label>
+                <description>The header to the frontend</description>
+                <type>text</type>
+                <value>Top products</value>
+            </widget_name>
+            <products_count>
+                <required>1</required>
+                <visible>1</visible>
+                <label>Number of products</label>
+                <description>Number of products to be displayed</description>
+                <type>text</type>
+                <value>3</value>
+            </products_count>
+            <template>
+                <required>1</required>
+                <visible>0</visible>
+                <label>Template</label>
+                <type>text</type>
+                <value>topproducts/widget.phtml</value>
+            </template>
+        </parameters>
+    </topproducts_widget>
+</widgets>
