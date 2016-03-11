@@ -3,9 +3,12 @@ class Cgi_Topproducts_Block_Widget
     extends Mage_Core_Block_Template
     implements Mage_Widget_Block_Interface
 {
-    protected  $widgetName = '';
-    protected $NumberOfProducts = 3;
+    protected  $widgetName = ''; // The name of the widget
+    protected $NumberOfProducts = 3; //Default number of top products to display
 
+    /**pseudo-constructor for widget class
+     *
+     */
     protected function _construct()
     {
         $this->widgetName = $this->getData('widget_name');

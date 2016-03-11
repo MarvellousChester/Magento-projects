@@ -10,6 +10,9 @@ class Cgi_Topproducts_Model_Options extends Varien_Object
     const IS_TOP_YES = 1;
     const IS_TOP_NO = NULL;
 
+    /** Options for column creation in the observer
+     * @return array
+     */
     public static function getOptionArray()
     {
         return array(
