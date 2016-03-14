@@ -21,7 +21,15 @@ $attributeGroup = 'Education'; // Group to add the attribute to
 //Add a new attribute group
 $entityTypeId = $installer->getEntityTypeId('catalog_product');
 $attributeSetId = $installer->getDefaultAttributeSetId($entityTypeId);
-$installer->addAttributeGroup($entityTypeId, $attributeSetId, $attributeGroup, 1000);
+
+//check if group is already exist
+
+//Get the attribute group id
+$attributeGroupId = $installer->getAttributeGroupId($entityTypeId, $attributeSetId, $attributeGroup);
+if ($attributeGroupId == NULL) {
+    //add an attribute group
+    $installer->addAttributeGroup($entityTypeId, $attributeSetId, $attributeGroup, 1000);
+}
 
 //Add a new attribute
 //Form an attribute data
@@ -51,14 +59,17 @@ $attributeData = array(
     'label' => $attributeName,
 
 );
-//Add the attribute
-$installer->addAttribute('catalog_product', $attributeCode, $attributeData);
-
-//Get the attribute id
-$attributeId = $installer->getAttributeId($entityTypeId, $attributeCode);
-//Get the attribute group id
-$attributeGroupId = $installer->getAttributeGroupId($entityTypeId, $attributeSetId, $attributeGroup);
-//Add the attribute to the group
-$installer->addAttributeToGroup($entityTypeId, $attributeSetId, $attributeGroupId, $attributeId, null);
+//check if attribute is already exist
+$attribute = Mage::getResourceModel('catalog/eav_attribute')->loadByCode('catalog_product', $attributeCode);
+if ($attribute->getId() == NULL) {
+    //Add the attribute
+    $installer->addAttribute('catalog_product', $attributeCode, $attributeData);
+    //Get the attribute id
+    $attributeId = $installer->getAttributeId($entityTypeId, $attributeCode);
+    //Get the attribute group id
+    $attributeGroupId = $installer->getAttributeGroupId($entityTypeId, $attributeSetId, $attributeGroup);
+    //Add the attribute to the group
+    $installer->addAttributeToGroup($entityTypeId, $attributeSetId, $attributeGroupId, $attributeId, null);
+}
 
 $installer->endSetup();

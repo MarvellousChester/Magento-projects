@@ -18,11 +18,13 @@ $content = '{{widget type="topproducts/widget" widget_name="Top products" produc
 
 
 $block = Mage::getModel('cms/block');
-$block->setTitle('Top products');
-$block->setIdentifier('top_products');
-$block->setIsActive(1);
-$block->setStores(array(0));
-$block->setContent($content);
-$block->save();
-
+//check if block exists
+if(Mage::getModel('cms/block')->load('top_products')->getId() == NULL) {
+    $block->setTitle('Top products');
+    $block->setIdentifier('top_products');
+    $block->setIsActive(1);
+    $block->setStores(array(0));
+    $block->setContent($content);
+    $block->save();
+}
 $installer->endSetup();
