@@ -38,7 +38,7 @@ class Cgi_Topproducts_Block_Widget
             )
             ->addAttributeToFilter('qty', array('gt' => 0));*/
 
-
+        //Limit and sort our products collection
         $collection->getSelect()->limit($this->NumberOfProducts)->order('rand()');
 
         return $collection;
