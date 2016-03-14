@@ -26,6 +26,7 @@ class Cgi_Topproducts_Block_Widget
             ->getCollection()
             ->addAttributeToSelect('*')
             ->addAttributeToFilter('is_top', array('eq' => 1))
+            ->addAttributeToFilter('visibility', array('eq' => 4))
             ->addStoreFilter($this->getStoreId());
 
         $collection->getSelect()->limit($this->NumberOfProducts)->order('rand()');
