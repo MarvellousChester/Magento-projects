@@ -1,0 +1,7 @@
+<application>
+  <component name="FileTypeManager" version="16">
+    <extensionMap>
+      <mapping pattern="Cgi_UpdatePrice" type="XML" />
+    </extensionMap>
+  </component>
+</application>
