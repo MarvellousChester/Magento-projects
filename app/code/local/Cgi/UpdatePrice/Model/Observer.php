@@ -29,7 +29,7 @@ class Cgi_UpdatePrice_Model_Observer
                         'name' => 'amount',
                         'type' => 'text',
                         'class' => 'required-entry',
-                        'label' => Mage::helper('catalog')->__('n'),
+                        'label' => Mage::helper('catalog')->__('n value'),
                     )
                 )
             ));
