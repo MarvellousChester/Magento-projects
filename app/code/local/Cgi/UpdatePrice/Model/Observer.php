@@ -1,6 +1,9 @@
 <?php
 class Cgi_UpdatePrice_Model_Observer
 {
+    /**Update price mass action
+     * @param Varien_Event_Observer $observer
+     */
     public function addMassAction(Varien_Event_Observer $observer)
     {
         $block = $observer->getEvent()->getBlock();

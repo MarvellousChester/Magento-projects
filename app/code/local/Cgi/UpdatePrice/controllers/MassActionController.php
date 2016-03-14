@@ -22,9 +22,12 @@ class Cgi_UpdatePrice_MassActionController extends Mage_Adminhtml_Controller_Act
                     $newPrice = $helper->calcPrice(
                         $product->getPrice(), $operation, $amount
                     );
-                    if ((float)$newPrice >= 0.0) {
-                        $product->setPrice($newPrice);
+                    if ((float)$newPrice < 0.0) {
+                        throw new Exception(
+                            'The resulting price is less than 0'
+                        );
                     }
+                    $product->setPrice($newPrice);
                     $product->save();
                 }
             }
