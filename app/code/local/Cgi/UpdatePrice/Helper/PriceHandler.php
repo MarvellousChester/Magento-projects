@@ -20,6 +20,7 @@ class Cgi_UpdatePrice_Helper_PriceHandler extends Mage_Core_Helper_Abstract
                 . " given"
             );
         }
+        //calculate the price
         switch ($operation) {
             case '+ n': $price += $amount;
                 break;
