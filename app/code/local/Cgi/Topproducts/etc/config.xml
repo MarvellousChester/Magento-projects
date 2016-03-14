@@ -24,6 +24,11 @@
                 <class>Cgi_Topproducts_Helper</class>
             </topproducts>
         </helpers>
+        <models>
+            <topproducts>
+                <class>Cgi_Topproducts_Model</class>
+            </topproducts>
+        </models>
         <resources>
             <topproducts_setup>
                 <setup>
@@ -39,7 +44,7 @@
                 <observers>
                     <topproducts>
                         <!-- Add column to catalog product grid -->
-                        <model>Cgi_Topproducts_Model_Adminhtml_Observer</model>
+                        <model>topproducts/adminhtml_observer</model>
                         <method>onBlockHtmlBefore</method>
                     </topproducts>
                 </observers>
@@ -48,7 +53,7 @@
                 <observers>
                     <topproducts>
                         <!-- Add column to product list -->
-                        <model>Cgi_Topproducts_Model_Adminhtml_Observer</model>
+                        <model>topproducts/adminhtml_observer</model>
                         <method>onEavLoadBefore</method>
                     </topproducts>
                 </observers>

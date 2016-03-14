@@ -14,7 +14,7 @@ class Cgi_Topproducts_Model_Adminhtml_Observer
                     'index' => 'is_top',
                     'sortable'  => false,
                     'type'  => 'options',
-                    'options' => Mage::getModel('Cgi_Topproducts_Model_Options')->getOptionArray()
+                    'options' => Mage::getModel('topproducts/options')->getOptionArray()
                 ));
                 break;
         }
