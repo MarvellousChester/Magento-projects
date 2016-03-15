@@ -10,7 +10,7 @@ class Cgi_TopProducts_Block_Widget
     extends Mage_Core_Block_Template
     implements Mage_Widget_Block_Interface
 {
-    protected  $widgetName = ''; // The name of the widget
+    protected $widgetName = ''; // The name of the widget
     protected $NumberOfProducts = 3; //Default number of top products to display
 
     /**pseudo-constructor for widget class
@@ -24,7 +24,9 @@ class Cgi_TopProducts_Block_Widget
         parent::_construct();
     }
 
-    /** Return top products collection based on widget settings and product tag 'is_top'
+    /** Return top products collection based on widget settings and product tag
+     * 'is_top'
+     *
      * @return mixed
      */
     protected function getTopProductsList()
@@ -38,7 +40,9 @@ class Cgi_TopProducts_Block_Widget
             ->addStoreFilter($this->getStoreId());
 
         //Limit and sort our products collection
-        $collection->getSelect()->limit($this->NumberOfProducts)->order('rand()');
+        $collection->getSelect()->limit($this->NumberOfProducts)->order(
+            'rand()'
+        );
 
         return $collection;
     }
