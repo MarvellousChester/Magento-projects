@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * UpdatePrice PriceHandler
+ *
+ * @category   Cgi
+ * @package    UpdatePrice
+ * @author      Bobok Aleksandr CGI Trainee Group
+ */
 class Cgi_UpdatePrice_Helper_PriceHandler extends Mage_Core_Helper_Abstract
 {
     //100 percent

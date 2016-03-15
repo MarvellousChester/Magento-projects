@@ -1,5 +1,12 @@
 <?php
-class Cgi_Topproducts_Block_Widget
+/**
+ * TopProducts Widget
+ *
+ * @category   Cgi
+ * @package    TopProducts
+ * @author      Bobok Aleksandr CGI Trainee Group
+ */
+class Cgi_TopProducts_Block_Widget
     extends Mage_Core_Block_Template
     implements Mage_Widget_Block_Interface
 {

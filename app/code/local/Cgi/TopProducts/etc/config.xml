@@ -1,8 +1,8 @@
 <config>
     <modules>
-        <Cgi_Topproducts>
+        <Cgi_TopProducts>
             <version>0.1.0</version>
-        </Cgi_Topproducts>
+        </Cgi_TopProducts>
     </modules>
     <frontend>
         <layout>
@@ -16,24 +16,24 @@
     <global>
         <blocks>
             <topproducts>
-                <class>Cgi_Topproducts_Block</class>
+                <class>Cgi_TopProducts_Block</class>
             </topproducts>
         </blocks>
         <helpers>
             <topproducts>
-                <class>Cgi_Topproducts_Helper</class>
+                <class>Cgi_TopProducts_Helper</class>
             </topproducts>
         </helpers>
         <models>
             <topproducts>
-                <class>Cgi_Topproducts_Model</class>
+                <class>Cgi_TopProducts_Model</class>
             </topproducts>
         </models>
         <resources>
             <topproducts_setup>
                 <setup>
-                    <module>Cgi_Topproducts</module>
-                    <class>Cgi_Topproducts_Model_Resource_Setup</class>
+                    <module>Cgi_TopProducts</module>
+                    <class>Cgi_TopProducts_Model_Resource_Setup</class>
                 </setup>
             </topproducts_setup>
         </resources>

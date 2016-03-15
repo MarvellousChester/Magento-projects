@@ -1,5 +1,12 @@
 <?php
-class Cgi_Topproducts_Model_Adminhtml_Observer
+/**
+* TopProducts Observer
+*
+ * @category   Cgi
+* @package    TopProducts
+* @author      Bobok Aleksandr CGI Trainee Group
+ */
+class Cgi_TopProducts_Model_Adminhtml_Observer
 {
     /**Add a new 'is_top' column to the grid
      * @param Varien_Event_Observer $observer
