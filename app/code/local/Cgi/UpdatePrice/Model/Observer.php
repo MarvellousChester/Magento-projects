@@ -1,4 +1,11 @@
 <?php
+/**
+ * UpdatePrice Observer
+ *
+ * @category   Cgi
+ * @package    UpdatePrice
+ * @author      Bobok Aleksandr CGI Trainee Group
+ */
 class Cgi_UpdatePrice_Model_Observer
 {
     /**Update price mass action

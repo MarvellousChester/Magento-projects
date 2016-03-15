@@ -1,4 +1,11 @@
 <?php
+/**
+* UpdatePrice MassAction Controller
+*
+ * @category   Cgi
+* @package    UpdatePrice
+* @author      Bobok Aleksandr CGI Trainee Group
+*/
 class Cgi_UpdatePrice_MassActionController extends Mage_Adminhtml_Controller_Action
 {
     protected $error = false;
@@ -16,17 +23,17 @@ class Cgi_UpdatePrice_MassActionController extends Mage_Adminhtml_Controller_Act
                 throw new Exception('Missing action parameters');
             }
             foreach ($productIds as $productId) {
-                //get a product by ID
+                //Get a product by ID
                 $product = Mage::getModel('catalog/product')->load(
                     $productId
                 );
-                //using a helper to calculate a new price
+                //Using a helper to calculate a new price
                 $helper = Mage::helper('updateprice/priceHandler');
 
                 $newPrice = $helper->calcPrice(
                     $product->getPrice(), $operation, $amount
                 );
-                //check if resulting price is correct
+                //Check if resulting price is correct
                 if ((float)$newPrice < 0.0) {
                     throw new Exception(
                         'The resulting price is less than 0'
