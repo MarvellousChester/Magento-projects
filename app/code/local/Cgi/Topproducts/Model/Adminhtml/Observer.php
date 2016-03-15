@@ -32,10 +32,14 @@ class Cgi_Topproducts_Model_Adminhtml_Observer
      */
     public function onEavLoadBefore(Varien_Event_Observer $observer)
     {
-        $collection = $observer->getCollection();
-        if (!isset($collection)) return;
+        $block = $observer->getBlock();
+        if (!isset($block)) return;
+        if($block->getType() == 'adminhtml/catalog_product_grid') {
+            $collection = $observer->getCollection();
+            if (!isset($collection)) return;
 
-        $collection->addAttributeToSelect('is_top');
+            $collection->addAttributeToSelect('is_top');
+        }
     }
 
 }

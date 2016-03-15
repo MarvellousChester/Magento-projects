@@ -27,16 +27,8 @@ class Cgi_Topproducts_Block_Widget
             ->addAttributeToSelect('*')
             ->addAttributeToFilter('is_top', array('eq' => 1))
             ->addAttributeToFilter('status', array('eq' => 1))
+            ->addAttributeToFilter('visibility', array('neq' => 1))
             ->addStoreFilter($this->getStoreId());
-            /*->joinField(
-                'qty',
-                'cataloginventory/stock_item',
-                'qty',
-                'product_id=entity_id',
-                '{{table}}.stock_id=1',
-                'left'
-            )
-            ->addAttributeToFilter('qty', array('gt' => 0));*/
 
         //Limit and sort our products collection
         $collection->getSelect()->limit($this->NumberOfProducts)->order('rand()');
