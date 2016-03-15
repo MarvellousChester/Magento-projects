@@ -13,7 +13,7 @@ class Cgi_TopProducts_Block_Widget
     protected $widgetName = ''; // The name of the widget
     protected $NumberOfProducts = 3; //Default number of top products to display
 
-    /**pseudo-constructor for widget class
+    /**Pseudo-constructor for widget class
      *
      */
     protected function _construct()

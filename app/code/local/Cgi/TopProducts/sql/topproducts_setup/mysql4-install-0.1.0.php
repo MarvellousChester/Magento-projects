@@ -1,4 +1,11 @@
 <?php
+/**
+ * TopProducts Sql installation script
+ *
+ * @category   Cgi
+ * @package    TopProducts
+ * @author      Bobok Aleksandr CGI Trainee Group
+ */
 /** @var Mage_Eav_Model_Entity_Setup $installer */
 $installer = $this;
 $installer->startSetup();
