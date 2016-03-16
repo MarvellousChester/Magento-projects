@@ -1,0 +1,7 @@
+<config>
+    <modules>
+        <Cgi_AddShippingCost>
+            <version>0.1.0</version>
+        </Cgi_AddShippingCost>
+    </modules>
+</config>

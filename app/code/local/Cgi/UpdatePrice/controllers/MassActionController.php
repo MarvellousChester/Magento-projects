@@ -8,6 +8,7 @@
 */
 class Cgi_UpdatePrice_MassActionController extends Mage_Adminhtml_Controller_Action
 {
+    //Error flag
     protected $error = false;
     /**Mass update prices action
      *

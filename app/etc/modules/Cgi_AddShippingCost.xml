@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <Cgi_AddShippingCost>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Cgi_AddShippingCost>
+    </modules>
+</config>
