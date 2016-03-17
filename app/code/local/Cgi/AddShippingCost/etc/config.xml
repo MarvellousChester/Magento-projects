@@ -1,7 +1,103 @@
 <config>
     <modules>
         <Cgi_AddShippingCost>
-            <version>0.1.0</version>
+            <version>0.1.1</version>
         </Cgi_AddShippingCost>
     </modules>
+    <global>
+        <models>
+            <addshippingcost>
+                <class>Cgi_AddShippingCost_Model</class>
+            </addshippingcost>
+        </models>
+        <helpers>
+            <addshippingcost>
+                <class>Cgi_TopProducts_Helper</class>
+            </addshippingcost>
+        </helpers>
+        <resources>
+            <addshippingcost_setup>
+                <setup>
+                    <module>Cgi_AddShippingCost</module>
+                    <class>Cgi_AddShippingCost_Model_Resource_Setup</class>
+                </setup>
+            </addshippingcost_setup>
+        </resources>
+        <sales>
+            <quote>
+                <totals>
+                    <addshippingcost>
+                        <class>addshippingcost/total</class>
+                        <after>subtotal</after>
+                        <before>tax</before>
+                    </addshippingcost>
+                </totals>
+                <item>
+                    <product_attributes>
+                        <add_cost />
+                    </product_attributes>
+                </item>
+            </quote>
+        </sales>
+        <events>
+            <sales_quote_item_set_product>
+                <observers>
+                    <addshippingcost>
+                        <class>addshippingcost/observer</class>
+                        <method>salesQuoteItemSetCustomAttribute</method>
+                    </addshippingcost>
+                </observers>
+            </sales_quote_item_set_product>
+            <sales_order_place_after>
+                <observers>
+                    <addshippingcost>
+                        <class>addshippingcost/observer</class>
+                        <method>salesOrderPlaceAfter</method>
+                    </addshippingcost>
+                </observers>
+            </sales_order_place_after>
+            <sales_quote_item_set_product>
+                <observers>
+                    <addshippingcost>
+                        <class>addshippingcost/observer</class>
+                        <method>salesQuoteItemSetProduct</method>
+                    </addshippingcost>
+                </observers>
+            </sales_quote_item_set_product>
+        </events>
+        <fieldsets>
+            <sales_convert_quote_item>
+                <addshippingcost>
+                    <to_order_item>*</to_order_item>
+                </addshippingcost>
+            </sales_convert_quote_item>
+            <sales_convert_order_item>
+                <addshippingcost>
+                    <to_quote_item>*</to_quote_item>
+                </addshippingcost>
+            </sales_convert_order_item>
+        </fieldsets>
+    </global>
+    <adminhtml>
+        <events>
+            <core_block_abstract_to_html_before>
+                <observers>
+                    <addshippingcost>
+                        <class>addshippingcost/observer</class>
+                        <method>coreBlockAbstractToHtmlBefore</method>
+                    </addshippingcost>
+                </observers>
+            </core_block_abstract_to_html_before>
+            <sales_order_grid_collection_load_before>
+                <observers>
+                    <addshippingcost>
+                        <!-- Add column to product list -->
+                        <model>addshippingcost/observer</model>
+                        <method>onEavLoadBefore</method>
+                    </addshippingcost>
+                </observers>
+            </sales_order_grid_collection_load_before>
+        </events>
+    </adminhtml>
+
 </config>

@@ -2,10 +2,10 @@
 /**
 * TopProducts Observer
 *
- * @category   Cgi
+* @category   Cgi
 * @package    TopProducts
 * @author      Bobok Aleksandr CGI Trainee Group
- */
+*/
 class Cgi_TopProducts_Model_Adminhtml_Observer
 {
     /**Add a new 'is_top' column to the grid
@@ -20,7 +20,6 @@ class Cgi_TopProducts_Model_Adminhtml_Observer
 
         //If out block is the one we are looking for
         if ($this->checkBlock($block, 'adminhtml/catalog_product_grid')) {
-
             /* @var $block Mage_Adminhtml_Block_Catalog_Product_Grid */
             //Add new column
             $block->addColumn(
@@ -34,7 +33,6 @@ class Cgi_TopProducts_Model_Adminhtml_Observer
                 )
             );
         }
-
     }
 
     /**Add a new 'is_top' attribute to display in the grid
@@ -69,5 +67,4 @@ class Cgi_TopProducts_Model_Adminhtml_Observer
         }
         return false;
     }
-
 }
