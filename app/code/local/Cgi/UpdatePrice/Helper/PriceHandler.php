@@ -10,6 +10,14 @@ class Cgi_UpdatePrice_Helper_PriceHandler extends Mage_Core_Helper_Abstract
 {
     //100 percent
     const ENTIRE = 100;
+    /**
+     * Update Price Mass Action operations
+     */
+    const OPERATION_ADD = '+ n';
+    const OPERATION_SUB = '− n';
+    const OPERATION_ADD_PERCENT = '+ n%';
+    const OPERATION_SUB_PERCENT = '− n%';
+    const OPERATION_MUL = '* n';
 
     /**Calculate the price using $$operation value
      * @param $price
@@ -28,17 +36,18 @@ class Cgi_UpdatePrice_Helper_PriceHandler extends Mage_Core_Helper_Abstract
         }
         //calculate the price
         switch ($operation) {
-            case '+ n': $price += $amount;
+            case self::OPERATION_ADD: $price += $amount;
                 break;
-            case '− n': $price -= $amount;
+            case self::OPERATION_SUB: $price -= $amount;
                 break;
-            case '+ n%': $price += $price * ($amount / self::ENTIRE);
+            case self::OPERATION_ADD_PERCENT: $price += $price * ($amount / self::ENTIRE);
                 break;
-            case '− n%': $price -= $price * ($amount / self::ENTIRE);
+            case self::OPERATION_SUB_PERCENT: $price -= $price * ($amount / self::ENTIRE);
                 break;
-            case '* n': $price *= $amount;
+            case self::OPERATION_MUL: $price *= $amount;
                 break;
-            default: throw new Exception('Invalid operation parameter');
+            default: Mage::getSingleton('adminhtml/session')->addError(
+                'Invalid operation');
         }
 
         return $price;

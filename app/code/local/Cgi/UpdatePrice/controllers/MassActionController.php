@@ -9,7 +9,7 @@
 class Cgi_UpdatePrice_MassActionController extends Mage_Adminhtml_Controller_Action
 {
     /**
-     * @var bool Error flag.
+     * @var bool error.
      */
     protected $error = false;
 
@@ -30,11 +30,10 @@ class Cgi_UpdatePrice_MassActionController extends Mage_Adminhtml_Controller_Act
         $helper = Mage::helper('updateprice/priceHandler');
 
         $productCollection = null;
-        try {
-            if (!isset($productIds, $operation, $amount)) {
-                throw new Exception('Missing action parameters');
-            }
-            $productCollection = Mage::getModel('catalog/product')->getCollection()
+
+        if (isset($productIds, $operation, $amount)) {
+            $productCollection = Mage::getModel('catalog/product')
+                ->getCollection()
                 ->addAttributeToSelect('price')
                 ->addAttributeToFilter('entity_id', array('in' => $productIds));
 
@@ -45,31 +44,34 @@ class Cgi_UpdatePrice_MassActionController extends Mage_Adminhtml_Controller_Act
                     $product->getPrice(), $operation, $amount
                 );
                 //Check if resulting price is correct
-                if ((float)$newPrice < 0.0) {
-                    throw new Exception(
-                        'The resulting price is less than 0'
+                if ($newPrice < 0) {
+                    Mage::getSingleton('adminhtml/session')->addError(
+                        'The resulting price is less than 0. Product ID: '
+                        . $product->getId()
                     );
-                }
-                //Set a new price
-                $product->setPrice($newPrice);
-            }
+                    $this->error = true;
 
-        } catch (Exception $ex) {
+                } else {
+                    //Set a new price
+                    $product->setPrice($newPrice);
+                }
+            }
+        } else {
             Mage::getSingleton('adminhtml/session')->addError(
-                $ex->getMessage()
+                'Missing action parameters'
             );
             $this->error = true;
-        } finally {
-            if (!$this->error) {
+        }
 
-                if (!is_null($productCollection)) {
-                    $productCollection->save();
-                }
+        if (!$this->error) {
+            if (!is_null($productCollection)) {
+                $productCollection->save();
                 Mage::getSingleton('adminhtml/session')->addSuccess(
-                    "Prices of " . count($productIds) . " products were updated"
+                    'Total of ' . count($productIds)
+                    . ' record(s) have been updated.'
                 );
             }
-            $this->_redirectReferer();
         }
+        $this->_redirectReferer();
     }
 }
