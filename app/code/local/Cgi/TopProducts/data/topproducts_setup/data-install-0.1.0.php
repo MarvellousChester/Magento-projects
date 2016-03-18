@@ -1,9 +1,10 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: aleksandr
- * Date: 09.03.16
- * Time: 15:16
+ * TopProducts data install script
+ *
+ * @category   Cgi
+ * @package    TopProducts
+ * @author      Bobok Aleksandr CGI Trainee Group
  */
 
 /** @var Mage_Eav_Model_Entity_Setup $installer */
@@ -21,8 +22,9 @@ $blockContent = '{{widget type="topproducts/widget" widget_name="Top products" p
 
 
 $block = Mage::getModel('cms/block');
-//check if block exists
+//Check if block already exists
 if(Mage::getModel('cms/block')->load($blockId)->getId() == NULL) {
+    //Add a new block
     $block->setTitle($blockTitle);
     $block->setIdentifier($blockId);
     $block->setIsActive(1);

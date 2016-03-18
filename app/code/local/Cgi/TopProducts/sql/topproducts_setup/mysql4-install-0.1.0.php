@@ -1,11 +1,11 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: aleksandr
- * Date: 09.03.16
- * Time: 15:16
+ * TopProducts Sql installation script
+ *
+ * @category   Cgi
+ * @package    TopProducts
+ * @author      Bobok Aleksandr CGI Trainee Group
  */
-
 /** @var Mage_Eav_Model_Entity_Setup $installer */
 $installer = $this;
 $installer->startSetup();
@@ -34,26 +34,27 @@ if ($attributeGroupId == NULL) {
 //Add a new attribute
 //Form an attribute data
 $attributeData = array(
-    'input' => 'select', // Input type
+    'group' => $attributeGroup,
+    'input'    => 'boolean', // Input type
     'type'  => 'int', // Attribute type
     'source' => 'eav/entity_attribute_source_boolean',
     'option' =>
         array (
             'values' =>
                 array (
-                    NULL => 'No',
-                    1 => 'Yes',
+                    false => 'No',
+                    true => 'Yes',
                 ),
         ),
     'global'    => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL,    // Attribute scope
     'required'  => false, // Is this attribute required?
-    'user_defined' => false,
+    'user_defined' => true,
     'searchable' => false,
     'filterable' => false,
     'comparable' => false,
     'visible_on_front' => false,
     'unique' => false,
-    'default' => NULL,
+    'default' => false,
     'used_in_product_listing' => true,
     // Filled from above:
     'label' => $attributeName,
@@ -64,12 +65,6 @@ $attribute = Mage::getResourceModel('catalog/eav_attribute')->loadByCode('catalo
 if ($attribute->getId() == NULL) {
     //Add the attribute
     $installer->addAttribute('catalog_product', $attributeCode, $attributeData);
-    //Get the attribute id
-    $attributeId = $installer->getAttributeId($entityTypeId, $attributeCode);
-    //Get the attribute group id
-    $attributeGroupId = $installer->getAttributeGroupId($entityTypeId, $attributeSetId, $attributeGroup);
-    //Add the attribute to the group
-    $installer->addAttributeToGroup($entityTypeId, $attributeSetId, $attributeGroupId, $attributeId, null);
 }
 
 $installer->endSetup();

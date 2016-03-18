@@ -1,14 +1,15 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: aleksandr
- * Date: 10.03.16
- * Time: 12:38
+ * TopProducts Options Model
+ *
+ * @category   Cgi
+ * @package    TopProducts
+ * @author      Bobok Aleksandr CGI Trainee Group
  */
-class Cgi_Topproducts_Model_Options extends Varien_Object
+class Cgi_TopProducts_Model_Options extends Varien_Object
 {
     const IS_TOP_YES = 1;
-    const IS_TOP_NO = NULL;
+    const IS_TOP_NO = 0;
 
     /** Options for column creation in the observer
      * @return array

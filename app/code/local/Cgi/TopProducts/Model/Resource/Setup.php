@@ -5,6 +5,6 @@
  * Date: 09.03.16
  * Time: 15:10
  */
-class Cgi_Topproducts_Model_Resource_Setup extends Mage_Eav_Model_Entity_Setup
+class Cgi_TopProducts_Model_Resource_Setup extends Mage_Eav_Model_Entity_Setup
 {
 }
