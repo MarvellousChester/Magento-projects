@@ -1,36 +1,46 @@
 <?php
 /**
-* UpdatePrice MassAction Controller
-*
+ * UpdatePrice MassAction Controller
+ *
  * @category   Cgi
-* @package    UpdatePrice
-* @author      Bobok Aleksandr CGI Trainee Group
-*/
+ * @package    UpdatePrice
+ * @author     Bobok Aleksandr CGI Trainee Group
+ */
 class Cgi_UpdatePrice_MassActionController extends Mage_Adminhtml_Controller_Action
 {
-    //Error flag
+    /**
+     * @var bool Error flag.
+     */
     protected $error = false;
-    /**Mass update prices action
+
+    /**
+     * Mass update prices action.
      *
+     * @return void
      */
     public function updatePricesAction()
     {
         //Get action parameters
+        /** @var TYPE_NAME $productIds */
         $productIds = $this->getRequest()->getPost('product', array());
         $operation = $this->getRequest()->getPost('operation');
         $amount = $this->getRequest()->getPost('amount');
+
+        /** @var Cgi_UpdatePrice_Helper_PriceHandler $helper */
+        $helper = Mage::helper('updateprice/priceHandler');
+
+        $productCollection = null;
         try {
             if (!isset($productIds, $operation, $amount)) {
                 throw new Exception('Missing action parameters');
             }
-            foreach ($productIds as $productId) {
-                //Get a product by ID
-                $product = Mage::getModel('catalog/product')->load(
-                    $productId
-                );
-                //Using a helper to calculate a new price
-                $helper = Mage::helper('updateprice/priceHandler');
+            $productCollection = Mage::getModel('catalog/product')->getCollection()
+                ->addAttributeToSelect('price')
+                ->addAttributeToFilter('entity_id', array('in' => $productIds));
 
+            foreach ($productCollection as $product) {
+
+                //Using a helper to calculate a new price
                 $newPrice = $helper->calcPrice(
                     $product->getPrice(), $operation, $amount
                 );
@@ -42,8 +52,8 @@ class Cgi_UpdatePrice_MassActionController extends Mage_Adminhtml_Controller_Act
                 }
                 //Set a new price
                 $product->setPrice($newPrice);
-                $product->save();
             }
+
         } catch (Exception $ex) {
             Mage::getSingleton('adminhtml/session')->addError(
                 $ex->getMessage()
@@ -51,6 +61,10 @@ class Cgi_UpdatePrice_MassActionController extends Mage_Adminhtml_Controller_Act
             $this->error = true;
         } finally {
             if (!$this->error) {
+
+                if (!is_null($productCollection)) {
+                    $productCollection->save();
+                }
                 Mage::getSingleton('adminhtml/session')->addSuccess(
                     "Prices of " . count($productIds) . " products were updated"
                 );
