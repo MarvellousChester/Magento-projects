@@ -80,7 +80,8 @@ class Cgi_AddShippingCost_Model_Observer
         }
     }
 
-    /** Check if our block is one we are needed
+    /**
+     * Check if our block is one we are needed
      * @param $currentBlock
      * @param $neededBlock
      *

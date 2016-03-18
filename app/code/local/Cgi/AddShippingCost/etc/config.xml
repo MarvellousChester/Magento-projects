@@ -40,7 +40,7 @@
             <quote>
                 <totals>
                     <addshippingcost>
-                        <class>addshippingcost/total</class>
+                        <class>addshippingcost/quoteTotal</class>
                         <after>subtotal</after>
                         <before>tax</before>
                     </addshippingcost>
