@@ -13,16 +13,21 @@ echo 'Data installer is working <br />';
 
 Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
 
+//Block identifiers
+$blockTitle = 'Top products';
+$blockId = 'top_products';
 //Block content
-$content = '{{widget type="topproducts/widget" widget_name="Top products" products_count="3" template="topproducts/widget.phtml"}}';
+$blockContent = '{{widget type="topproducts/widget" widget_name="Top products" products_count="3" template="topproducts/widget.phtml"}}';
 
 
 $block = Mage::getModel('cms/block');
-$block->setTitle('Top products');
-$block->setIdentifier('top_products');
-$block->setIsActive(1);
-$block->setStores(array(0));
-$block->setContent($content);
-$block->save();
-
+//check if block exists
+if(Mage::getModel('cms/block')->load($blockId)->getId() == NULL) {
+    $block->setTitle($blockTitle);
+    $block->setIdentifier($blockId);
+    $block->setIsActive(1);
+    $block->setStores(array(0));
+    $block->setContent($blockContent);
+    $block->save();
+}
 $installer->endSetup();
