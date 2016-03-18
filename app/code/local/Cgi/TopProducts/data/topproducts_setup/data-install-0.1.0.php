@@ -7,7 +7,9 @@
  * @author      Bobok Aleksandr CGI Trainee Group
  */
 
-/** @var Mage_Eav_Model_Entity_Setup $installer */
+/**
+ * @var Mage_Eav_Model_Entity_Setup $installer
+ */
 $installer = $this;
 $installer->startSetup();
 echo 'Data installer is working <br />';

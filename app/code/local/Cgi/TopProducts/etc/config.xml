@@ -49,15 +49,6 @@
                     </topproducts>
                 </observers>
             </core_block_abstract_to_html_before>
-            <eav_collection_abstract_load_before>
-                <observers>
-                    <topproducts>
-                        <!-- Add column to product list -->
-                        <model>topproducts/adminhtml_observer</model>
-                        <method>onEavLoadBefore</method>
-                    </topproducts>
-                </observers>
-            </eav_collection_abstract_load_before>
         </events>
     </adminhtml>
 </config>
