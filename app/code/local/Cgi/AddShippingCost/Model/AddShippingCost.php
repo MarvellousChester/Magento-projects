@@ -1,7 +1,7 @@
 <?php
 class Cgi_AddShippingCost_Model_AddShippingCost extends Varien_Object
 {
-    /** Check if fee should be applied or not
+    /** Check if additional cost should be applied or not
      * @param $address
      *
      * @return bool
