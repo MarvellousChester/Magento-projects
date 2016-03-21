@@ -9,7 +9,6 @@
 /** @var Mage_Eav_Model_Entity_Setup $installer */
 $installer = $this;
 $installer->startSetup();
-echo 'Sql installer is working <br />';
 
 //Add a new attribute and group for it
 

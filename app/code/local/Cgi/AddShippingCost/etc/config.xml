@@ -12,8 +12,9 @@
             </addshippingcost>
             <adminhtml>
                 <rewrite>
-                    <sales_order_totals>Cgi_AddShippingCost_Block_Totals</sales_order_totals>
-                    <sales_order_invoice_totals>Cgi_AddShippingCost_Block_Invoice_Totals</sales_order_invoice_totals>
+                    <sales_order_totals>Cgi_AddShippingCost_Block_Adminhtml_Sales_Order_Totals</sales_order_totals>
+                    <sales_order_invoice_totals>Cgi_AddShippingCost_Block_Adminhtml_Sales_Order_Invoice_Totals</sales_order_invoice_totals>
+                    <sales_order_creditmemo_totals>Cgi_AddShippingCost_Block_Adminhtml_Sales_Order_Creditmemo_Totals</sales_order_creditmemo_totals>
                 </rewrite>
             </adminhtml>
         </blocks>
@@ -40,36 +41,29 @@
             <quote>
                 <totals>
                     <addshippingcost>
-                        <class>addshippingcost/quoteTotal</class>
+                        <class>addshippingcost/quoteTotals</class>
                         <after>subtotal</after>
                         <before>tax</before>
                     </addshippingcost>
                 </totals>
-                <item>
-                    <product_attributes>
-                        <add_cost />
-                    </product_attributes>
-                </item>
             </quote>
+            <order_invoice>
+                <totals>
+                    <addshippingcost>
+                        <class>addshippingcost/invoiceTotals</class>
+                    </addshippingcost>
+                </totals>
+            </order_invoice>
+            <order_creditmemo>
+                <totals>
+                    <addshippingcost>
+                        <class>addshippingcost/creditmemoTotals</class>
+                    </addshippingcost>
+                </totals>
+            </order_creditmemo>
         </sales>
 
         <events>
-            <sales_quote_item_set_product>
-                <observers>
-                    <addshippingcost>
-                        <class>addshippingcost/observer</class>
-                        <method>salesQuoteItemSetCustomAttribute</method>
-                    </addshippingcost>
-                </observers>
-            </sales_quote_item_set_product>
-            <sales_order_place_after>
-                <observers>
-                    <addshippingcost>
-                        <class>addshippingcost/observer</class>
-                        <method>salesOrderPlaceAfter</method>
-                    </addshippingcost>
-                </observers>
-            </sales_order_place_after>
             <sales_quote_item_set_product>
                 <observers>
                     <addshippingcost>
@@ -81,16 +75,19 @@
         </events>
 
         <fieldsets>
-            <sales_convert_quote_item>
-                <addshippingcost>
-                    <to_order_item>*</to_order_item>
-                </addshippingcost>
-            </sales_convert_quote_item>
-            <sales_convert_order_item>
-                <addshippingcost>
-                    <to_quote_item>*</to_quote_item>
-                </addshippingcost>
-            </sales_convert_order_item>
+            <sales_convert_quote>
+                <add_cost>
+                    <to_order>*</to_order>
+                </add_cost>
+            </sales_convert_quote>
+            <sales_convert_order>
+                <add_cost>
+                    <to_quote>*</to_quote>
+                    <to_invoice>*</to_invoice>
+                    <to_shipment>*</to_shipment>
+                    <to_cm>*</to_cm>
+                </add_cost>
+            </sales_convert_order>
         </fieldsets>
     </global>
     <adminhtml>
@@ -108,7 +105,7 @@
                     <addshippingcost>
                         <!-- Add column to product list -->
                         <model>addshippingcost/observer</model>
-                        <method>onEavLoadBefore</method>
+                        <method>salesOrderGridCollectionLoadBefore</method>
                     </addshippingcost>
                 </observers>
             </sales_order_grid_collection_load_before>

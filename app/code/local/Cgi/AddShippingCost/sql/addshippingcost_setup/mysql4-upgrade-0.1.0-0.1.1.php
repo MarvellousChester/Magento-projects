@@ -10,7 +10,6 @@
 $installer = new Mage_Sales_Model_Mysql4_Setup($this->_resourceName);
 
 $installer->startSetup();
-echo 'Additional Shipping Cost module. Sql upgrade script is working <br />';
 $installer->getTable('sales/quote_item');
 
 $options = array(

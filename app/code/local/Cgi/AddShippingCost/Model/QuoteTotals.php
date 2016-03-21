@@ -1,5 +1,5 @@
 <?php
-class Cgi_AddShippingCost_Model_QuoteTotal extends Mage_Sales_Model_Quote_Address_Total_Abstract
+class Cgi_AddShippingCost_Model_QuoteTotals extends Mage_Sales_Model_Quote_Address_Total_Abstract
 {
     public function collect(Mage_Sales_Model_Quote_Address $address)
     {

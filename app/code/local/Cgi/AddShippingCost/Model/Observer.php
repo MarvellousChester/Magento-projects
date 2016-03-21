@@ -1,13 +1,6 @@
 <?php
 class Cgi_AddShippingCost_Model_Observer
 {
-    public function salesQuoteItemSetCustomAttribute($observer)
-    {
-        $quoteItem = $observer->getQuoteItem();
-        $product = $observer->getProduct();
-        $quoteItem->setAddCost($product->getAddCost());
-    }
-
     public function coreBlockAbstractToHtmlBefore($observer)
     {
         $block = $observer->getBlock();
@@ -22,23 +15,9 @@ class Cgi_AddShippingCost_Model_Observer
                 )
             );
         }
-
-//        if($this->checkBlock($block, 'adminhtml/sales_order_totals'))
-//        {
-//            $amount = $block->getOrder()->getAddCost();
-//            $obj = new Varien_Object(array(
-//                'code' => 'add_cost_amount',
-//                'title' => 'Additional Shipping Cost',
-//                'value' => $amount),
-//                array('shipping'));
-//
-//            $block->addTotal($obj);
-//        }
-
-
     }
 
-    public function onEavLoadBefore(Varien_Event_Observer $observer)
+    public function salesOrderGridCollectionLoadBefore(Varien_Event_Observer $observer)
     {
         //Get collection
 
@@ -66,17 +45,6 @@ class Cgi_AddShippingCost_Model_Observer
             if(!is_null($finalAddCost)) {
                 $quote->setData('add_cost', $finalAddCost);
             }
-        }
-    }
-
-    public function salesOrderPlaceAfter(Varien_Event_Observer $observer)
-    {
-        $order = $observer->getEvent()->getOrder();
-        $quote = $order->getQuote();
-        $finalAddCost = $quote->getAddCost();
-
-        if(!is_null($finalAddCost)) {
-            $order->setData('add_cost', $finalAddCost);
         }
     }
 

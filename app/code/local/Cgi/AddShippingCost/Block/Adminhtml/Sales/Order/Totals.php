@@ -1,5 +1,13 @@
 <?php
-class Cgi_AddShippingCost_Block_Totals extends Mage_Adminhtml_Block_Sales_Order_Totals
+/**
+ * AddShippingCost Sales Order Totals rewrite block
+ *
+ * @category   Cgi
+ * @package    AddShippingCost
+ * @author     Bobok Aleksandr CGI Trainee Group
+ *
+ */
+class Cgi_AddShippingCost_Block_Adminhtml_Sales_Order_Totals extends Mage_Adminhtml_Block_Sales_Order_Totals
 {
     /**
      * Initialize order totals array
