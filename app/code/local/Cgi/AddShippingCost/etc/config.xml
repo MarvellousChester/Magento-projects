@@ -17,6 +17,11 @@
                     <sales_order_creditmemo_totals>Cgi_AddShippingCost_Block_Adminhtml_Sales_Order_Creditmemo_Totals</sales_order_creditmemo_totals>
                 </rewrite>
             </adminhtml>
+            <sales>
+                <rewrite>
+                    <order_totals>Cgi_AddShippingCost_Block_Order_Totals</order_totals>
+                </rewrite>
+            </sales>
         </blocks>
         <models>
             <addshippingcost>
@@ -42,8 +47,6 @@
                 <totals>
                     <addshippingcost>
                         <class>addshippingcost/quoteTotals</class>
-                        <after>subtotal</after>
-                        <before>tax</before>
                     </addshippingcost>
                 </totals>
             </quote>
