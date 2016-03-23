@@ -17,11 +17,6 @@
                     <sales_order_creditmemo_totals>Cgi_AddShippingCost_Block_Adminhtml_Sales_Order_Creditmemo_Totals</sales_order_creditmemo_totals>
                 </rewrite>
             </adminhtml>
-            <sales>
-                <rewrite>
-                    <order_totals>Cgi_AddShippingCost_Block_Order_Totals</order_totals>
-                </rewrite>
-            </sales>
         </blocks>
         <models>
             <addshippingcost>
@@ -114,5 +109,14 @@
             </sales_order_grid_collection_load_before>
         </events>
     </adminhtml>
+    <frontend>
+        <layout>
+            <updates>
+                <addshippingcost>
+                    <file>addshippingcost.xml</file>
+                </addshippingcost>
+            </updates>
+        </layout>
+    </frontend>
 
 </config>
