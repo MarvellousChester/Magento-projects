@@ -1,61 +1,77 @@
 <?php
 /**
-* UpdatePrice MassAction Controller
-*
+ * UpdatePrice MassAction Controller
+ *
  * @category   Cgi
-* @package    UpdatePrice
-* @author      Bobok Aleksandr CGI Trainee Group
-*/
+ * @package    UpdatePrice
+ * @author     Bobok Aleksandr CGI Trainee Group
+ */
 class Cgi_UpdatePrice_MassActionController extends Mage_Adminhtml_Controller_Action
 {
-    //Error flag
+    /**
+     * @var bool error.
+     */
     protected $error = false;
-    /**Mass update prices action
+
+    /**
+     * Mass update prices action.
      *
+     * @return void
      */
     public function updatePricesAction()
     {
         //Get action parameters
+        /** @var TYPE_NAME $productIds */
         $productIds = $this->getRequest()->getPost('product', array());
         $operation = $this->getRequest()->getPost('operation');
         $amount = $this->getRequest()->getPost('amount');
-        try {
-            if (!isset($productIds, $operation, $amount)) {
-                throw new Exception('Missing action parameters');
-            }
-            foreach ($productIds as $productId) {
-                //Get a product by ID
-                $product = Mage::getModel('catalog/product')->load(
-                    $productId
-                );
-                //Using a helper to calculate a new price
-                $helper = Mage::helper('updateprice/priceHandler');
 
+        /** @var Cgi_UpdatePrice_Helper_PriceHandler $helper */
+        $helper = Mage::helper('updateprice/priceHandler');
+
+        $productCollection = null;
+
+        if (isset($productIds, $operation, $amount)) {
+            $productCollection = Mage::getModel('catalog/product')
+                ->getCollection()
+                ->addAttributeToSelect('price')
+                ->addAttributeToFilter('entity_id', array('in' => $productIds));
+
+            foreach ($productCollection as $product) {
+
+                //Using a helper to calculate a new price
                 $newPrice = $helper->calcPrice(
                     $product->getPrice(), $operation, $amount
                 );
                 //Check if resulting price is correct
-                if ((float)$newPrice < 0.0) {
-                    throw new Exception(
-                        'The resulting price is less than 0'
+                if ($newPrice < 0) {
+                    Mage::getSingleton('adminhtml/session')->addError(
+                        'The resulting price is less than 0. Product ID: '
+                        . $product->getId()
                     );
+                    $this->error = true;
+
+                } else {
+                    //Set a new price
+                    $product->setPrice($newPrice);
                 }
-                //Set a new price
-                $product->setPrice($newPrice);
-                $product->save();
             }
-        } catch (Exception $ex) {
+        } else {
             Mage::getSingleton('adminhtml/session')->addError(
-                $ex->getMessage()
+                'Missing action parameters'
             );
             $this->error = true;
-        } finally {
-            if (!$this->error) {
+        }
+
+        if (!$this->error) {
+            if (!is_null($productCollection)) {
+                $productCollection->save();
                 Mage::getSingleton('adminhtml/session')->addSuccess(
-                    "Prices of " . count($productIds) . " products were updated"
+                    'Total of ' . count($productIds)
+                    . ' record(s) have been updated.'
                 );
             }
-            $this->_redirectReferer();
         }
+        $this->_redirectReferer();
     }
 }

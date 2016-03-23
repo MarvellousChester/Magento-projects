@@ -1,12 +1,12 @@
 <?php
 /**
- * TopProducts Model Resource Setup
+ * AddShippingCost Helper data
  *
  * @category   Cgi
  * @package    TopProducts
  * @author      Bobok Aleksandr CGI Trainee Group
  */
-
-class Cgi_TopProducts_Model_Resource_Setup extends Mage_Eav_Model_Entity_Setup
+class Cgi_AddShippingCost_Helper_Data extends Mage_Core_Helper_Abstract
 {
+
 }
