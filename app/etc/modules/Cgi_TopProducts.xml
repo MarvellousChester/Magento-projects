@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <Cgi_TopProducts>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Cgi_TopProducts>
+    </modules>
+</config>
