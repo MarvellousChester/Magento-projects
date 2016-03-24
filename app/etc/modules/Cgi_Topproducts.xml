@@ -1,8 +1,0 @@
-<config>
-    <modules>
-        <Cgi_Topproducts>
-            <active>true</active>
-            <codePool>local</codePool>
-        </Cgi_Topproducts>
-    </modules>
-</config>

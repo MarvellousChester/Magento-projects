@@ -1,0 +1,47 @@
+<config>
+    <modules>
+        <Cgi_Topproducts>
+            <version>0.1.0</version>
+        </Cgi_Topproducts>
+    </modules>
+    <global>
+        <blocks>
+            <updateprice>
+                <class>Cgi_UpdatePrice_Block</class>
+            </updateprice>
+        </blocks>
+        <models>
+            <updateprice>
+                <class>Cgi_UpdatePrice_Model</class>
+            </updateprice>
+        </models>
+        <helpers>
+            <updateprice>
+                <class>Cgi_UpdatePrice_Helper</class>
+            </updateprice>
+        </helpers>
+    </global>
+    <adminhtml>
+        <events>
+            <core_block_abstract_to_html_before>
+                <observers>
+                    <updateprice>
+                        <model>updateprice/observer</model>
+                        <method>addMassAction</method>
+                    </updateprice>
+                </observers>
+            </core_block_abstract_to_html_before>
+        </events>
+    </adminhtml>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <updateprice after="Mage_Adminhtml">Cgi_UpdatePrice</updateprice>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+</config>
