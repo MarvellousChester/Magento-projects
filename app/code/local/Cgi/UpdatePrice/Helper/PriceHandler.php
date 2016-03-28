@@ -19,7 +19,7 @@ class Cgi_UpdatePrice_Helper_PriceHandler extends Mage_Core_Helper_Abstract
     const OPERATION_SUB_PERCENT = '− n%';
     const OPERATION_MUL = '* n';
 
-    /**Calculate the price using $$operation value
+    /**Calculate the price using $operation value
      * @param $price
      * @param $operation
      * @param $amount
