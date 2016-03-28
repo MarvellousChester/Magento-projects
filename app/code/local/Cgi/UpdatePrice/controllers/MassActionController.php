@@ -20,8 +20,10 @@ class Cgi_UpdatePrice_MassActionController extends Mage_Adminhtml_Controller_Act
      */
     public function updatePricesAction()
     {
-        //Get action parameters
-        /** @var TYPE_NAME $productIds */
+        /**
+         * @var TYPE_NAME $productIds
+         * Get action parameters
+         */
         $productIds = $this->getRequest()->getPost('product', array());
         $operation = $this->getRequest()->getPost('operation');
         $amount = $this->getRequest()->getPost('amount');
