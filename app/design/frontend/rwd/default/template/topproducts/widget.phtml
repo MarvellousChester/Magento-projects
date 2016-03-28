@@ -1,7 +1,7 @@
 <?php if (($_products = $this->getTopProductsList())): ?>
     <div class="widget widget-new-products">
         <div class="widget-title">
-            <h3><?php echo $this->__('Top Products') ?></h3>
+            <h3><?php echo $this->__($this->widgetName) ?></h3>
         </div>
         <div class="widget-products">
             <?php echo $this->getPagerHtml() ?>
