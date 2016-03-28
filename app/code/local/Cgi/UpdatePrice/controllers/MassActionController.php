@@ -28,7 +28,9 @@ class Cgi_UpdatePrice_MassActionController extends Mage_Adminhtml_Controller_Act
         $operation = $this->getRequest()->getPost('operation');
         $amount = $this->getRequest()->getPost('amount');
 
-        /** @var Cgi_UpdatePrice_Helper_PriceHandler $helper */
+        /**
+         * @var Cgi_UpdatePrice_Helper_PriceHandler $helper
+         */
         $helper = Mage::helper('updateprice/priceHandler');
 
         $productCollection = null;
